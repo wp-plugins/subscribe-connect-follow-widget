@@ -91,7 +91,10 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 
 == Changelog ==
 
-= 0.5 (2011-02-21) =
+= 0.5.1 (2011-03-25)
+* Fix
+
+= 0.5 (2011-03-21) =
 * Public release
 
 == Hacks ==
