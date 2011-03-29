@@ -87,11 +87,14 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 
 1. Output when the '32px images' output format is selected
 2. Output when the 'text links with image' output format is selected
-3. Widget options page
+3. Widget options
 
 == Changelog ==
 
-= 0.5.1 (2011-03-25)
+= 0.5.2 (2011-03-29) =
+* Styling fix, other minor changes
+
+= 0.5.1 (2011-03-25) =
 * Fix
 
 = 0.5 (2011-03-21) =
