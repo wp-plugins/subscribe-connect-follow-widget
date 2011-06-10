@@ -3,7 +3,7 @@
 Plugin Name: Subscribe / Connect / Follow Widget
 Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
 Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.2
+Version: 0.5.3
 Author: Srini G
 Author URI: http://srinig.com/wordpress/
 License: GPL2
@@ -222,6 +222,13 @@ class SCFW_Widget extends WP_Widget {
 			"description" => "WordPress.com Blog",
 			"option_text" => "WordPress.com Blog (URL)",
 			"image" => "wordpress-blue.png",
+			"url" => "{user_input}"
+		),
+		"xing" => array (
+			"name" => "XING",
+			"description" => "XING Profile",
+			"option_text" => "XING (Profile URL)",
+			"image" => "xing.png",
 			"url" => "{user_input}"
 		),
 		"youtube" => array (

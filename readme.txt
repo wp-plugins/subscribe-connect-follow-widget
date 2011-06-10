@@ -1,8 +1,9 @@
 === Subscribe / Connect / Follow Widget ===
 Contributors: SriniG
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZMJU2J9SP836N
 Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, digg, deviant-art, flickr, friendfeed, google, identica, lastfm, linkedin, myspace, picasa, podcast, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, vimeo, youtube
 Requires at least: 2.8
-Tested up to: 3.1
+Tested up to: 3.2-beta2
 Stable tag: trunk
 
 The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 30 services supported.
@@ -59,6 +60,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 * Twitter
 * Vimeo
 * WordPress.com Blog
+* XING
 * YouTube
 
 = Credits =
@@ -90,6 +92,9 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 3. Widget options
 
 == Changelog ==
+
+= 0.5.3 (2011-06-10) =
+* Xing added to the list of networks
 
 = 0.5.2 (2011-03-29) =
 * Styling fix, other minor changes
