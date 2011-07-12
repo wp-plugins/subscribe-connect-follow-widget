@@ -3,7 +3,7 @@
 Plugin Name: Subscribe / Connect / Follow Widget
 Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
 Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.3
+Version: 0.5.4
 Author: Srini G
 Author URI: http://srinig.com/wordpress/
 License: GPL2
@@ -97,6 +97,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Google Buzz (username / user ID)",
 			"image" => "google-buzz.png",
 			"url" => "http://profiles.google.com/{user_input}#{user_input}/buzz"
+		),
+		"google-plus" => array (
+			"name" => "Google+",
+			"description" => "Google+",
+			"option_text" => "Google + (user ID)",
+			"image" => "google-plus.png",
+			"url" => "https://plus.google.com/u/0/{user_input}"
 		),
 		"identi.ca" => array (
 			"name" => "identi.ca",
@@ -266,14 +273,10 @@ class SCFW_Widget extends WP_Widget {
 
 		$item_template = $this->item_template($instance['format'], $instance['window']);
 		
-		echo $before_widget;
-
-		if ( $title )
-			echo $before_title . $title . $after_title;
-			
+		$output = "";		
 			
 		for($i = 0; $i < $this->num_items; $i++) {
-			if(!$instance["itemval-{$i}"]) continue;
+			if(!$instance["itemval-{$i}"] || !$instance["item-{$i}"] || $instance["item-{$i}"] == "----SELECT----") continue;
 			$url = str_replace('{user_input}', $instance["itemval-{$i}"], $services[$instance["item-{$i}"]]['url']);
 			$item = str_replace('{url}', $url, $item_template);
 			$item = str_replace('{description}', $services[$instance["item-{$i}"]]['description'], $item);
@@ -285,6 +288,8 @@ class SCFW_Widget extends WP_Widget {
 				
 		}
 		
+		if(!$output) return;
+
 		if($instance['format'] == 'text')
 			$output = '<ul class="scfw_'.$instance['format'].'">'.$output.'</ul>'; 
 		else if($instance['format'] == 'text_img')
@@ -292,16 +297,22 @@ class SCFW_Widget extends WP_Widget {
 		else {
 			if($instance['align'] != 'default')
 				$css_align = "text-align:".$instance['align'].";";
+			else $css_align = "";
 
 			$output = '<ul class="scfw_'.$instance['format'].'" style="list-style:none;margin:0;padding:0;'.$css_align.'">'.$output.'</ul>';
 		}	
 
+		echo $before_widget;
+
+		if ( $title )
+			echo $before_title . $title . $after_title;
+
 		echo $output;
 		
-
 		echo $after_widget;
 	}
-
+	
+	
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
@@ -320,8 +331,12 @@ class SCFW_Widget extends WP_Widget {
 
 	function form( $instance ) {
 
-		$defaults = array( 'title' => __('Subscribe', 'scfw'), 'format' => "32px" );
+		$defaults = array( 'title' => __('Subscribe', 'scfw'), 'format' => "32px", 'align' => 'default', 'window' => 'same');
 		$instance = wp_parse_args( (array) $instance, $defaults );
+		
+		$format_selected = array('32px' => '', '24px' => '', '16px' => '', 'text_img' => '', 'text' => '');
+		$align_selected = array('default' => '',  'left' => '', 'center' => '', 'right' => '');
+		$window_selected = array('same' => '', 'new' => '');
 		
 		$format_selected[$instance['format']] = ' selected="selected"'; 
 		$align_selected[$instance['align']] = ' selected="selected"';
@@ -369,12 +384,16 @@ class SCFW_Widget extends WP_Widget {
 		
 			$item_i = "item-".$i;
 			$itemval_i = "itemval-".$i;
-		
+			
+			if(!isset($instance[$item_i])) $instance[$item_i] = "";
+			if(!isset($instance[$itemval_i])) $instance[$itemval_i] = "";
+			
+			
 		?>
 		
 		<p>
 			<select id="<?php echo $this->get_field_id( $item_i ); ?>"name="<?php echo $this->get_field_name( $item_i ); ?>">
-			<option>----SELECT----</option>
+			<option value="0">----SELECT----</option>
 			<?php echo $this->optionlist($instance[$item_i]); ?>
 			</select>
 			<input class="widefat" id="<?php echo $this->get_field_id( $itemval_i ); ?>" name="<?php echo $this->get_field_name( $itemval_i ); ?>" value="<?php echo $instance[$itemval_i]; ?>" style="width:100%;" />
@@ -389,6 +408,7 @@ class SCFW_Widget extends WP_Widget {
 	function optionlist($default = "")
 	{
 		$services = $this->services;
+		$list = "";
 		foreach ($services as $key => $value) {
 			if($default == $key) $selected = ' selected="selected"';
 			else $selected = '';
@@ -399,8 +419,7 @@ class SCFW_Widget extends WP_Widget {
 	
 	function item_template($format = "32px", $window = "same")
 	{
-		if($window == 'new')
-			$target = ' target="_blank"';
+		$target = ($window == 'new')?' target="_blank"':'';
 		switch($format) {
 			case("text"): {
 				return '<li><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
@@ -409,13 +428,13 @@ class SCFW_Widget extends WP_Widget {
 				return '<li style="background:url(\''.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}\') no-repeat 0% 50%;padding-left:20px;font-size:14px;"><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
 			}
 			case("16px"): {
-				return '<li style="display:inline;margin:0 2px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}" alt="{name}" /></a></li>';
+				return '<li style="display:inline;margin:0 2px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}" alt="{name}" height="16px" width="16px" /></a></li>';
 			}
 			case("24px"): {
-				return '<li style="display:inline;margin:0 3px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/24px/{image}" alt="{name}" /></a></li>';
+				return '<li style="display:inline;margin:0 3px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/24px/{image}" alt="{name}" height="24px" width="24px" /></a></li>';
 			}
 			case("32px"): {
-				return '<li style="display:inline;margin:0 5px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/32px/{image}" alt="{name}" /></a></li>';
+				return '<li style="display:inline;margin:0 5px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/32px/{image}" alt="{name}" height="32px" width="32px" /></a></li>';
 			}
 		}
 	}
