@@ -3,7 +3,7 @@
 Plugin Name: Subscribe / Connect / Follow Widget
 Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
 Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.4
+Version: 0.5.5
 Author: Srini G
 Author URI: http://srinig.com/wordpress/
 License: GPL2
@@ -102,7 +102,7 @@ class SCFW_Widget extends WP_Widget {
 			"name" => "Google+",
 			"description" => "Google+",
 			"option_text" => "Google + (user ID)",
-			"image" => "google-plus.png",
+			"image" => "google-plus-black.png",
 			"url" => "https://plus.google.com/u/0/{user_input}"
 		),
 		"identi.ca" => array (
@@ -188,6 +188,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Slashdot (username)",
 			"image" => "slashdot.png",
 			"url" => "http://slashdot.com/~{user_input}"
+		),
+		"soundcloud" => array (
+			"name" => "SoundCloud",
+			"description" => "{user_input}'s page on SoundCloud",
+			"option_text" => "SoundCloud (username)",
+			"image" => "soundcloud.png",
+			"url" => "http://soundcloud.com/{user_input}"
 		),
 		"stumbleupon" => array (
 			"name" => "StumbleUpon",
@@ -428,13 +435,13 @@ class SCFW_Widget extends WP_Widget {
 				return '<li style="background:url(\''.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}\') no-repeat 0% 50%;padding-left:20px;font-size:14px;"><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
 			}
 			case("16px"): {
-				return '<li style="display:inline;margin:0 2px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}" alt="{name}" height="16px" width="16px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}" alt="{name}" height="16px" width="16px" /></a></li>';
 			}
 			case("24px"): {
-				return '<li style="display:inline;margin:0 3px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/24px/{image}" alt="{name}" height="24px" width="24px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/24px/{image}" alt="{name}" height="24px" width="24px" /></a></li>';
 			}
 			case("32px"): {
-				return '<li style="display:inline;margin:0 5px 0 0"><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/32px/{image}" alt="{name}" height="32px" width="32px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/32px/{image}" alt="{name}" height="32px" width="32px" /></a></li>';
 			}
 		}
 	}
@@ -446,8 +453,28 @@ function scfw_head()
 {
 	?>
 <style type="text/css">
+ul.scfw_16px li, ul.scfw_24px li, ul.scfw_32px li, ul.scfw_16px li a, ul.scfw_24px li a, ul.scfw_32px li a {
+	display:inline !important;
+	float:none !important;
+	border:0 !important;
+	background:transparent none !important;
+	margin:0 !important;
+	padding:0 !important;
+}
+ul.scfw_16px li {
+	margin:0 2px 0 0 !important;
+}
+ul.scfw_24px li {
+	margin:0 3px 0 0 !important;
+}
+ul.scfw_32px li {
+	margin:0 5px 0 0 !important;
+}
 ul.scfw_text_img li:before, ul.scfw_16px li:before, ul.scfw_24px li:before, ul.scfw_32px li:before {
-	content:"";
+	content:none !important;
+}
+.scfw img {
+	float:none !important;
 }
 </style>	
 	<?php

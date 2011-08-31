@@ -1,9 +1,9 @@
 === Subscribe / Connect / Follow Widget ===
 Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZMJU2J9SP836N
-Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, podcast, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, vimeo, xing, youtube
+Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, podcast, posterous, reddit, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
 Requires at least: 2.8
-Tested up to: 3.2
+Tested up to: 3.2.1
 Stable tag: trunk
 
 The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 30 services supported.
@@ -42,7 +42,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 * FriendFeed
 * Google Profile
 * Google Buzz
-* Google Plus *(new in v0.5.4)*
+* Google Plus
 * identi.ca
 * Last.fm
 * LinkedIn
@@ -55,6 +55,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 * RSS Feed for Posts
 * RSS Feed for Comments
 * Slashdot
+* SoundCloud
 * StumbleUpon
 * Technorati
 * Tumblr
@@ -66,7 +67,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 = Credits =
 
-The plugin uses [Vector Social Media Icons](http://icondock.com/free/vector-social-media-icons) from IconDock. Google Plus icons in v0.5.4 by [Bold Perspective](http://boldperspective.com/2011/free-google-plus-icon-vector/).
+The plugin uses [Vector Social Media Icons](http://icondock.com/free/vector-social-media-icons) from IconDock.
 
 == Installation ==
 
@@ -93,6 +94,11 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 3. Widget options
 
 == Changelog ==
+= 0.5.5 (2011-08-31) =
+* SoundClound added
+* Google+ images updated to icondock images
+* Styling fixes
+
 = 0.5.4 (2011-07-12) =
 * Google+ added
 * `height` and `width` attributes added to the `<img>` tags
