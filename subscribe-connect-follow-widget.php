@@ -3,7 +3,7 @@
 Plugin Name: Subscribe / Connect / Follow Widget
 Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
 Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.5
+Version: 0.5.6
 Author: Srini G
 Author URI: http://srinig.com/wordpress/
 License: GPL2
@@ -34,6 +34,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Delicious (username)",
 			"image" => "delicious.png",
 			"url" => "http://delicious.com/{user_input}"
+		),
+		"diaspora" => array (
+			"name" => "Diaspora",
+			"description" => "{user_input} on DIASPORA*",
+			"option_text" => "Diaspora (username)",
+			"image" => "diaspora_asterisk.png",
+			"url" => "https://joindiaspora.com/u/{user_input}"
 		),
 		"digg" => array (
 			"name" => "Digg",
@@ -101,9 +108,9 @@ class SCFW_Widget extends WP_Widget {
 		"google-plus" => array (
 			"name" => "Google+",
 			"description" => "Google+",
-			"option_text" => "Google + (user ID)",
-			"image" => "google-plus-black.png",
-			"url" => "https://plus.google.com/u/0/{user_input}"
+			"option_text" => "Google + (user ID or page ID)",
+			"image" => "GooglePlus-Gloss-Red.png",
+			"url" => "https://plus.google.com/{user_input}"
 		),
 		"identi.ca" => array (
 			"name" => "identi.ca",
@@ -139,6 +146,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Picasa Web Albums (username)",
 			"image" => "picasa.png",
 			"url" => "http://picasaweb.google.com/{user_input}"
+		),
+		"pinterest" => array (
+			"name" => "Pinterest",
+			"description" => "{user_input} on Pinterest",
+			"option_text" => "Pinterest (username)",
+			"image" => "pinterest.png",
+			"url" => "http://pinterest.com/{user_input}/"
 		),
 		"podcast" => array (
 			"name" => "Podcast",

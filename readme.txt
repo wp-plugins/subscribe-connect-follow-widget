@@ -1,9 +1,9 @@
 === Subscribe / Connect / Follow Widget ===
 Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZMJU2J9SP836N
-Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, podcast, posterous, reddit, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
+Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, diaspora, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, pinterest, podcast, posterous, reddit, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
 Requires at least: 2.8
-Tested up to: 3.2.1
+Tested up to: 3.3
 Stable tag: trunk
 
 The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 30 services supported.
@@ -33,6 +33,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 * Blogger Blog
 * Delicious
+* Diaspora *(new in 0.5.6)*
 * Digg
 * deviantART
 * Facebook
@@ -48,6 +49,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 * LinkedIn
 * Myspace
 * Picasa Web Albums
+* Pinterest *(new in 0.5.6)*
 * Podcast
 * Posterous
 * reddit
@@ -68,6 +70,10 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 = Credits =
 
 The plugin uses [Vector Social Media Icons](http://icondock.com/free/vector-social-media-icons) from IconDock.
+
+Diaspora icons by [CreativeKaizen](http://creativekaizen.deviantart.com/art/Diaspora-Icon-Set-257241499).
+
+The new red Google Plus icons by [Abhash Bikram Thapa](http://pixelpinch.com/2011/11/new-red-google-plus-or-page-vector-icon-pack-for-free/).
 
 == Installation ==
 
@@ -94,6 +100,10 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 3. Widget options
 
 == Changelog ==
+= 0.5.6 (2011-12-29) =
+* Pinterest and Diaspora added
+* Google+ images updated to the new red icon
+
 = 0.5.5 (2011-08-31) =
 * SoundClound added
 * Google+ images updated to icondock images
