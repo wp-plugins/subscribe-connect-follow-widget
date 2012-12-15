@@ -3,10 +3,10 @@ Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZMJU2J9SP836N
 Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, diaspora, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, pinterest, podcast, posterous, reddit, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
 Requires at least: 2.8
-Tested up to: 3.3
+Tested up to: 3.5
 Stable tag: trunk
 
-The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 30 services supported.
+The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 40 services supported.
 
 == Description ==
 
@@ -14,7 +14,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 = Features =
 
-* Upto 30 services supported
+* Upto 40 services supported
 * The widget can display upto 5 links at a time, though this number can be extended easily (see other notes).
 * Output format for the links can be one of these five:
 	* 32px images (default) 
@@ -33,36 +33,43 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 * Blogger Blog
 * Delicious
-* Diaspora *(new in 0.5.6)*
+* Diaspora
 * Digg
 * deviantART
+* Dribbble
+* Etsy
 * Facebook
 * Feedburner Email Subscription
 * Feedburner Feed
 * Flickr
 * FriendFeed
+* GitHub
+* Goodreads
 * Google Profile
-* Google Buzz
 * Google Plus
 * identi.ca
+* Instagram
 * Last.fm
 * LinkedIn
 * Myspace
 * Picasa Web Albums
-* Pinterest *(new in 0.5.6)*
+* Pinterest
 * Podcast
 * Posterous
+* Quora
 * reddit
 * RSS Feed
 * RSS Feed for Posts
 * RSS Feed for Comments
 * Slashdot
+* SlideShare
 * SoundCloud
 * StumbleUpon
 * Technorati
 * Tumblr
 * Twitter
 * Vimeo
+* WordPress.org Profiles
 * WordPress.com Blog
 * XING
 * YouTube
@@ -73,7 +80,7 @@ The plugin uses [Vector Social Media Icons](http://icondock.com/free/vector-soci
 
 Diaspora icons by [CreativeKaizen](http://creativekaizen.deviantart.com/art/Diaspora-Icon-Set-257241499).
 
-The new red Google Plus icons by [Abhash Bikram Thapa](http://pixelpinch.com/2011/11/new-red-google-plus-or-page-vector-icon-pack-for-free/).
+Goodreads icons by [Paul Robert Lloyd](http://paulrobertlloyd.com/2009/06/social_media_icons/).
 
 == Installation ==
 
@@ -100,6 +107,12 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 3. Widget options
 
 == Changelog ==
+= 0.5.7 (2012-12-15) =
+* Fix for issues with multi-site and mapped domains
+* Added: Dribbble, Etsy, GitHub, Goodreads, Instagram, Quora, SlideShare, WordPress.org Profiles
+* Updated: Twitter, Google Plus, Stumbleupon
+* Removed: Google buzz
+
 = 0.5.6 (2011-12-29) =
 * Pinterest and Diaspora added
 * Google+ images updated to the new red icon

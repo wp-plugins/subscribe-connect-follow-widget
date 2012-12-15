@@ -3,7 +3,7 @@
 Plugin Name: Subscribe / Connect / Follow Widget
 Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
 Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.6
+Version: 0.5.7
 Author: Srini G
 Author URI: http://srinig.com/wordpress/
 License: GPL2
@@ -56,6 +56,20 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "deviant-art.png",
 			"url" => "http://{user_input}.deviantart.com/"
 		),
+		"dribbble" => array (
+			"name" => "Dribbble",
+			"description" => "Dribbble - {user_input}",
+			"option_text" => "Dribbble (username)",
+			"image" => "dribbble.png",
+			"url" => "http://dribbble.com/{user_input}"
+		),
+		"etsy" => array (
+			"name" => "Etsy",
+			"description" => "Shop with Etsy",
+			"option_text" => "Etsy (URL)",
+			"image" => "etsy.png",
+			"url" => "{user_input}"
+		),
 		"facebook" => array (
 			"name" => "Facebook",
 			"description" => "Connect on Facebook",
@@ -91,6 +105,20 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "friendfeed.png",
 			"url" => "http://friendfeed.com/{user_input}"
 		),
+		"github" => array (
+			"name" => "GitHub",
+			"description" => "{user_input} on GitHub",
+			"option_text" => "GitHub (username)",
+			"image" => "github.png",
+			"url" => "https://github.com/{user_input}"
+		),
+		"goodreads" => array (
+			"name" => "Goodreads",
+			"description" => "Goodreads",
+			"option_text" => "Goodreads (URL)",
+			"image" => "goodreads.png",
+			"url" => "{user_input}"
+		),
 		"google" => array (
 			"name" => "Google Profile",
 			"description" => "Google Profile",
@@ -98,18 +126,11 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "google.png",
 			"url" => "http://profiles.google.com/{user_input}"
 		),
-		"google-buzz" => array (
-			"name" => "Google Buzz",
-			"description" => "Google Buzz",
-			"option_text" => "Google Buzz (username / user ID)",
-			"image" => "google-buzz.png",
-			"url" => "http://profiles.google.com/{user_input}#{user_input}/buzz"
-		),
 		"google-plus" => array (
 			"name" => "Google+",
 			"description" => "Google+",
 			"option_text" => "Google + (user ID or page ID)",
-			"image" => "GooglePlus-Gloss-Red.png",
+			"image" => "google-plus.png",
 			"url" => "https://plus.google.com/{user_input}"
 		),
 		"identi.ca" => array (
@@ -118,6 +139,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "identi.ca (username)",
 			"image" => "identi.png",
 			"url" => "http://identi.ca/{user_input}"
+		),
+		"instagram" => array (
+			"name" => "Instagram",
+			"description" => "{user_input} on Instagram",
+			"option_text" => "Instagram (username)",
+			"image" => "instagram.png",
+			"url" => "http://instagram.com/{user_input}"
 		),
 		"last.fm" => array (
 			"name" => "Last.fm",
@@ -168,6 +196,13 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "posterous.png",
 			"url" => "{user_input}"
 		),
+		"quora" => array (
+			"name" => "Quora",
+			"description" => "Quora",
+			"option_text" => "Quora (URL)",
+			"image" => "quora.png",
+			"url" => "{user_input}"
+		),
 		"reddit" => array (
 			"name" => "reddit",
 			"description" => "overview for {user_input} - on reddit",
@@ -203,6 +238,13 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "slashdot.png",
 			"url" => "http://slashdot.com/~{user_input}"
 		),
+		"slideshare" => array (
+			"name" => "SlideShare",
+			"description" => "{user_input} | SlideShare",
+			"option_text" => "SlideShare (username)",
+			"image" => "slideshare.png",
+			"url" => "http://www.slideshare.net/{user_input}"
+		),
 		"soundcloud" => array (
 			"name" => "SoundCloud",
 			"description" => "{user_input}'s page on SoundCloud",
@@ -235,7 +277,7 @@ class SCFW_Widget extends WP_Widget {
 			"name" => "Twitter",
 			"description" => "Follow {user_input} on Twitter",
 			"option_text" => "Twitter (username)",
-			"image" => "twitter-2.png",
+			"image" => "twitter.png",
 			"url" => "http://twitter.com/{user_input}"
 		),
 		"vimeo" => array (
@@ -244,6 +286,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Vimeo (username)",
 			"image" => "vimeo.png",
 			"url" => "http://vimeo.com/{user_input}"
+		),
+		"wordpress-profile" => array (
+			"name" => "WordPress.org Profile",
+			"description" => "WordPress Profiles - {user_input}",
+			"option_text" => "WordPress.org Profile (username)",
+			"image" => "wordpress.png",
+			"url" => "http://profiles.wordpress.org/{user_input}/"
 		),
 		"wordpress-blog" => array (
 			"name" => "WordPress.com Blog",
@@ -446,16 +495,16 @@ class SCFW_Widget extends WP_Widget {
 				return '<li><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
 			}
 			case("text_img"): {
-				return '<li style="background:url(\''.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}\') no-repeat 0% 50%;padding-left:20px;font-size:14px;"><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
+				return '<li style="background:url(\'' . plugins_url( 'images/16px/{image}', __FILE__ ) . '\') no-repeat 0% 50%;padding-left:20px;font-size:14px;"><a href="{url}" title="{description}"'.$target.'>{link_text}</a></li>';
 			}
 			case("16px"): {
-				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/16px/{image}" alt="{name}" height="16px" width="16px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'. plugins_url( 'images/16px/{image}', __FILE__ ) .'" alt="{name}" height="16px" width="16px" /></a></li>';
 			}
 			case("24px"): {
-				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/24px/{image}" alt="{name}" height="24px" width="24px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'. plugins_url( 'images/24px/{image}', __FILE__ ) .'" alt="{name}" height="24px" width="24px" /></a></li>';
 			}
 			case("32px"): {
-				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'.WP_PLUGIN_URL.'/subscribe-connect-follow-widget/images/32px/{image}" alt="{name}" height="32px" width="32px" /></a></li>';
+				return '<li><a href="{url}" title="{description}"'.$target.'><img src="'. plugins_url( 'images/32px/{image}', __FILE__ ) .'" alt="{name}" height="32px" width="32px" /></a></li>';
 			}
 		}
 	}
