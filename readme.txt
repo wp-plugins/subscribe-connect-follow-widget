@@ -76,11 +76,9 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 = Credits =
 
-The plugin uses [Vector Social Media Icons](http://icondock.com/free/vector-social-media-icons) from IconDock.
-
-Diaspora icons by [CreativeKaizen](http://creativekaizen.deviantart.com/art/Diaspora-Icon-Set-257241499).
-
-Goodreads icons by [Paul Robert Lloyd](http://paulrobertlloyd.com/2009/06/social_media_icons/).
+* The plugin uses [Social Media Icons](http://icondock.com/free/vector-social-media-icons) from IconDock.
+* Diaspora icons by [CreativeKaizen](http://creativekaizen.deviantart.com/art/Diaspora-Icon-Set-257241499).
+* Goodreads icons by [Paul Robert Lloyd](http://paulrobertlloyd.com/2009/06/social_media_icons/).
 
 == Installation ==
 
