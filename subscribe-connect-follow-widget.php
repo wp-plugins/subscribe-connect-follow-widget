@@ -1,13 +1,13 @@
 <?php
-/*
-Plugin Name: Subscribe / Connect / Follow Widget
-Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
-Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
-Version: 0.5.7
-Author: Srini G
-Author URI: http://srinig.com/wordpress/
-License: GPL2
-*/
+/**
+ * Plugin Name: Subscribe / Connect / Follow Widget
+ * Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
+ * Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
+ * Version: 1.0
+ * Author: Srini G
+ * Author URI: http://srinig.com/wordpress/
+ * License: GPL2
+ */
 
 
 add_action( 'widgets_init', 'scfw_load_widgets' );
@@ -21,6 +21,13 @@ class SCFW_Widget extends WP_Widget {
 	private $num_items = 5;
 
 	private $services = array (
+		"behance" => array (
+			"name" => "Behance",
+			"description" => "Behance Portfolio",
+			"option_text" => "Behance (username)",
+			"image" => "behance.png",
+			"url" => "https://www.behance.net/{user_input}"
+		),
 		"blogger" => array (
 			"name" => "Blogger Blog",
 			"description" => "Blogger Blog",
@@ -33,7 +40,7 @@ class SCFW_Widget extends WP_Widget {
 			"description" => "Delicious bookmarks",
 			"option_text" => "Delicious (username)",
 			"image" => "delicious.png",
-			"url" => "http://delicious.com/{user_input}"
+			"url" => "https://delicious.com/{user_input}"
 		),
 		"diaspora" => array (
 			"name" => "Diaspora",
@@ -61,7 +68,14 @@ class SCFW_Widget extends WP_Widget {
 			"description" => "Dribbble - {user_input}",
 			"option_text" => "Dribbble (username)",
 			"image" => "dribbble.png",
-			"url" => "http://dribbble.com/{user_input}"
+			"url" => "https://dribbble.com/{user_input}"
+		),
+		"email" => array (
+			"name" => "Email",
+			"description" => "Send an email to {user_input}",
+			"option_text" => "Email Address",
+			"image" => "email.png",
+			"url" => "mailto:{user_input}"
 		),
 		"etsy" => array (
 			"name" => "Etsy",
@@ -94,9 +108,16 @@ class SCFW_Widget extends WP_Widget {
 		"flickr" => array (
 			"name" => "Flickr",
 			"description" => "Photos on Flickr",
-			"option_text" => "Flickr (url)",
+			"option_text" => "Flickr (URL)",
 			"image" => "flickr.png",
 			"url" => "{user_input}"
+		),
+		"foursquare" => array (
+			"name" => "Foursquare",
+			"description" => "{user_input} on Foursquare",
+			"option_text" => "Foursquare (username)",
+			"image" => "foursquare.png",
+			"url" => "https://foursquare.com/{user_input}"
 		),
 		"friendfeed" => array (
 			"name" => "FriendFeed",
@@ -125,6 +146,13 @@ class SCFW_Widget extends WP_Widget {
 			"option_text" => "Google Profile (username / user ID)",
 			"image" => "google.png",
 			"url" => "http://profiles.google.com/{user_input}"
+		),
+		"google-plus-username" => array (
+			"name" => "Google+",
+			"description" => "{user_input} on Google+",
+			"option_text" => "Google + (username)",
+			"image" => "google-plus.png",
+			"url" => "https://plus.google.com/+{user_input}"
 		),
 		"google-plus" => array (
 			"name" => "Google+",
@@ -231,6 +259,13 @@ class SCFW_Widget extends WP_Widget {
 			"image" => "rss.png",
 			"url" => "{user_input}"
 		),	
+		"skype" => array (
+			"name" => "Skype",
+			"description" => "Call {user_input} on Skype",
+			"option_text" => "Skype (username)",
+			"image" => "skype.png",
+			"url" => "skype:{user_input}?call"
+		),
 		"slashdot" => array (
 			"name" => "Slashdot",
 			"description" => "{user_input} - Slashdot User",
@@ -278,7 +313,7 @@ class SCFW_Widget extends WP_Widget {
 			"description" => "Follow {user_input} on Twitter",
 			"option_text" => "Twitter (username)",
 			"image" => "twitter.png",
-			"url" => "http://twitter.com/{user_input}"
+			"url" => "https://twitter.com/{user_input}"
 		),
 		"vimeo" => array (
 			"name" => "Vimeo",
@@ -292,7 +327,7 @@ class SCFW_Widget extends WP_Widget {
 			"description" => "WordPress Profiles - {user_input}",
 			"option_text" => "WordPress.org Profile (username)",
 			"image" => "wordpress.png",
-			"url" => "http://profiles.wordpress.org/{user_input}/"
+			"url" => "https://profiles.wordpress.org/{user_input}/"
 		),
 		"wordpress-blog" => array (
 			"name" => "WordPress.com Blog",
@@ -310,11 +345,19 @@ class SCFW_Widget extends WP_Widget {
 		),
 		"youtube" => array (
 			"name" => "YouTube",
-			"description" => "Subscribe to {user_input}'s channel on YouTube",
+			"description" => "{user_input} - YouTube",
 			"option_text" => "YouTube (username)",
 			"image" => "youtube.png",
-			"url" => "http://www.youtube.com/user/{user_input}"
-		)
+			"url" => "https://www.youtube.com/user/{user_input}"
+		),
+		"youtube-channel" => array (
+			"name" => "YouTube",
+			"description" => "YouTube Channel",
+			"option_text" => "YouTube (channel URL)",
+			"image" => "youtube.png",
+			"url" => "{user_input}"
+		),
+
 	);
 
 	/**
@@ -325,7 +368,7 @@ class SCFW_Widget extends WP_Widget {
 		$widget_ops = array( 'classname' => 'scfw', 'description' => __('Image links to subscription services and social networking sites.', 'scfw') );
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 320, 'height' => 700, 'id_base' => 'scfw' );
+		$control_ops = array( 'id_base' => 'scfw' );
 
 		/* Create the widget. */
 		$this->WP_Widget( 'scfw', __('Subscribe / Connect / Follow Widget', 'scfw'), $widget_ops, $control_ops );
@@ -337,17 +380,24 @@ class SCFW_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args );
 
-		$title = apply_filters('widget_title', $instance['title'] );
+		$title = apply_filters('widget_title', esc_attr( $instance['title'] ) );
 
 		$services = $this->services;
 
 		$item_template = $this->item_template($instance['format'], $instance['window']);
+
+		if( isset( $instance['num_items'] ) && intval($instance['num_items']) ) {
+			$this->num_items = intval($instance['num_items']);
+		}
 		
 		$output = "";		
 			
 		for($i = 0; $i < $this->num_items; $i++) {
 			if(!$instance["itemval-{$i}"] || !$instance["item-{$i}"] || $instance["item-{$i}"] == "----SELECT----") continue;
-			$url = str_replace('{user_input}', $instance["itemval-{$i}"], $services[$instance["item-{$i}"]]['url']);
+			$url = str_replace('{user_input}', esc_attr( $instance["itemval-{$i}"] ), $services[$instance["item-{$i}"]]['url']);
+			if( "{user_input}" == $services[$instance["item-{$i}"]]['url'] ) {
+				$url = esc_url( $url );
+			}
 			$item = str_replace('{url}', $url, $item_template);
 			$item = str_replace('{description}', $services[$instance["item-{$i}"]]['description'], $item);
 			$item = str_replace('{user_input}', $instance["itemval-{$i}"], $item);
@@ -390,10 +440,17 @@ class SCFW_Widget extends WP_Widget {
 		$instance['format'] = $new_instance['format'];
 		$instance['align'] = $new_instance['align'];
 		$instance['window'] = $new_instance['window'];
+
+		if( isset( $new_instance['num_items'] ) && intval($new_instance['num_items']) ) {
+			$this->num_items = intval($new_instance['num_items']);
+		}
+
+		$instance['num_items'] = $this->num_items;
+
 		
 		for($i = 0; $i < $this->num_items; $i++) {
 			$instance["item-{$i}"] = $new_instance["item-{$i}"];
-			$instance["itemval-{$i}"] = strip_tags($new_instance["itemval-{$i}"]);
+			$instance["itemval-{$i}"] = esc_attr( strip_tags($new_instance["itemval-{$i}"]) );
 		}
 
 		return $instance;
@@ -411,12 +468,17 @@ class SCFW_Widget extends WP_Widget {
 		$format_selected[$instance['format']] = ' selected="selected"'; 
 		$align_selected[$instance['align']] = ' selected="selected"';
 		$window_selected[$instance['window']] = ' selected="selected"';
+
+		if( isset( $instance['num_items'] ) && intval($instance['num_items']) ) {
+			$this->num_items = intval($instance['num_items']);
+		}
+
 		
 		?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'hybrid'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="width:100%;" />
 		</p>
 
 
@@ -449,6 +511,12 @@ class SCFW_Widget extends WP_Widget {
 			</select>
 		</p>
 
+		<p>
+			<label for="<?php echo $this->get_field_id( 'num_items' ); ?>"><?php _e('Number of items:', 'scfw'); ?></label>
+			<input type="number" id="<?php echo $this->get_field_id( 'num_items' ); ?>" name="<?php echo $this->get_field_name( 'num_items' ); ?>" value="<?php echo $this->num_items; ?>" min="1" max="50" step="1" style="width: 4em;" />
+		</p>
+
+
 		<p><strong>Services</strong></p>
 		<?php for($i = 0; $i < $this->num_items; $i++) { 
 		
@@ -466,7 +534,7 @@ class SCFW_Widget extends WP_Widget {
 			<option value="0">----SELECT----</option>
 			<?php echo $this->optionlist($instance[$item_i]); ?>
 			</select>
-			<input class="widefat" id="<?php echo $this->get_field_id( $itemval_i ); ?>" name="<?php echo $this->get_field_name( $itemval_i ); ?>" value="<?php echo $instance[$itemval_i]; ?>" style="width:100%;" />
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id( $itemval_i ); ?>" name="<?php echo $this->get_field_name( $itemval_i ); ?>" value="<?php echo esc_attr( $instance[$itemval_i] ); ?>" style="width:100%;" />
 		</p>
 		
 		<?php } // for loop ?>

@@ -1,12 +1,13 @@
 === Subscribe / Connect / Follow Widget ===
 Contributors: SriniG
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZMJU2J9SP836N
-Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, feedburner, twitter, facebook, blogger, delicious, diaspora, digg, deviant-art, flickr, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, pinterest, podcast, posterous, reddit, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XYTQW7TUDMU66
+Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, email, feedburner, twitter, facebook, behance, blogger, delicious, diaspora, digg, deviant-art, flickr, foursquare, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, pinterest, podcast, posterous, reddit, skype, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
 Requires at least: 2.8
-Tested up to: 3.5
+Tested up to: 4.2
 Stable tag: trunk
+License: GNU General Public License
 
-The widget displays image links (icon buttons) to various subscription services and social networking sites. Upto 40 services supported.
+The widget displays image links (icon buttons) to various subscription services and social networking sites. More than 40 services supported.
 
 == Description ==
 
@@ -14,7 +15,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 = Features =
 
-* Upto 40 services supported
+* More than 40 services supported
 * The widget can display upto 5 links at a time, though this number can be extended easily (see other notes).
 * Output format for the links can be one of these five:
 	* 32px images (default) 
@@ -26,22 +27,26 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 	* Widget title
 	* Option to select an alignment for images
 	* Option to open the links in new window
+	* Number of items *(new in 1.0)*
 * Multiple instances of the widget can be had at the same time
 * Uses WP_Widget class
 
 = Supported subscription services and social sites =
 
+* Behance *(new in 1.0)*
 * Blogger Blog
 * Delicious
 * Diaspora
 * Digg
 * deviantART
 * Dribbble
+* Email *(new in 1.0)*
 * Etsy
 * Facebook
 * Feedburner Email Subscription
 * Feedburner Feed
 * Flickr
+* Foursquare *(new in 1.0)*
 * FriendFeed
 * GitHub
 * Goodreads
@@ -61,6 +66,7 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 * RSS Feed
 * RSS Feed for Posts
 * RSS Feed for Comments
+* Skype *(new in 1.0)*
 * Slashdot
 * SlideShare
 * SoundCloud
@@ -82,9 +88,26 @@ This plugin provides a widget that displays image links (icon buttons) to variou
 
 == Installation ==
 
-1. Upload `subscribe-connect-follow-widget` folder to the `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Go to 'Appearance -> Widgets' menu in WP admin, select the 'Subscribe / Connect / Follow' widget and place it in your sidebar (or any widget holder), and choose your options.
+**Method 1**
+
+1. Go to *Plugins -> Add New* in your WordPress admin area
+1. Type 'subscribe connect follow widget' in the search box available and hit the 'Enter' key
+1. Locate the 'Subscribe / Connect / Follow Widget' plugin authored by Srini G, and click 'Install Now'
+
+**Method 2**
+
+1. Dowload the latest version of the plugin from WordPress plugin directory
+1. Go to *Plugins -> Add New* in your WordPress admin area
+1. Click on the 'Upload Plugin' button at the top, near 'Add Plugins'
+1. Browse and select the zip file you just downloaded, and click 'Install Now'
+
+**Method 3**
+
+1. Dowload the latest version of the plugin from WordPress plugin directory
+1. Extract the zip file
+1. Using a FTP client or something similar, upload the `subscribe-connect-follow-widget` directory to the `~/wp-content/plugins/` directory of your WordPress installation.
+
+After installation, the plugin can be activated from *Plugins -> Installed Plugins* in your WordPress admin area. Once activated, the widget can be found and added from the *Widgets* menu.
 
 == Frequently Asked Questions ==
 
@@ -98,6 +121,10 @@ There are two differences.
 
 The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments', as applicable) can be used for a Feedburner feed when the standard RSS icon is preferred over the Feedburner icon.
 
+= The number of items that can be added is 5 by default. How to add more items? =
+
+Simply change the value of the 'Number of items' field in the widget options, for example, to 7, and *Save* your options. After saving you will find that you will have two more fields added and the total number of items you can now add is 7.
+
 == Screenshots ==
 
 1. Output when the '32px images' output format is selected
@@ -105,6 +132,11 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 3. Widget options
 
 == Changelog ==
+= 1.0 (2015-04-24) =
+* Added: Behance, Email, Foursquare, Skype
+* New widget option field to specify the number of items
+* Other improvements and fixes
+
 = 0.5.7 (2012-12-15) =
 * Fix for issues with multi-site and mapped domains
 * Added: Dribbble, Etsy, GitHub, Goodreads, Instagram, Quora, SlideShare, WordPress.org Profiles
@@ -137,8 +169,7 @@ The general 'RSS Feed' option (or 'RSS Feed for Posts' / 'RSS Feed for Comments'
 = 0.5 (2011-03-21) =
 * Public release
 
-== Hacks ==
+== Upgrade Notice ==
 
-= Number of output items =
-
-The widget can output upto 5 different links at the same time. However, this number can be easily increased. Just change the value of the variable `$num_items` in `subscribe-connect-follow-widget.php`, line 21 (as in version 0.5) to any number you want.
+= 1.0 =
+Behance, Email, Foursquare and Skype added. New widget option field to specify the number of items. Other fixes and improvements. Upgrade recommended.
