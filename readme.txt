@@ -3,7 +3,7 @@ Contributors: SriniG
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XYTQW7TUDMU66
 Tags: widget, subscribe, connect, follow, buttons, icons, image links, feed, rss, rss-feed, email, feedburner, twitter, facebook, behance, blogger, delicious, diaspora, digg, deviant-art, flickr, foursquare, friendfeed, google, google plus, identica, lastfm, linkedin, myspace, picasa, pinterest, podcast, posterous, reddit, skype, slashdot, soundcloud, stumbleupon, technorati, tumblr, vimeo, xing, youtube
 Requires at least: 2.8
-Tested up to: 4.2
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GNU General Public License
 
@@ -132,6 +132,10 @@ Simply change the value of the 'Number of items' field in the widget options, fo
 3. Widget options
 
 == Changelog ==
+
+= 1.0.1 (2015-07-08) =
+* Updating to PHP5 style constructor
+
 = 1.0 (2015-04-24) =
 * Added: Behance, Email, Foursquare, Skype
 * New widget option field to specify the number of items
@@ -171,5 +175,5 @@ Simply change the value of the 'Number of items' field in the widget options, fo
 
 == Upgrade Notice ==
 
-= 1.0 =
-Behance, Email, Foursquare and Skype added. New widget option field to specify the number of items. Other fixes and improvements. Upgrade recommended.
+= 1.0.1 =
+v1.0 adds Behance, Email, Foursquare and Skype + new widget option field to specify the number of items + other fixes and improvements. v1.0.1 updates to PHP5 style constructor.

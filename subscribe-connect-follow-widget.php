@@ -3,18 +3,12 @@
  * Plugin Name: Subscribe / Connect / Follow Widget
  * Plugin URI: http://srinig.com/wordpress/plugins/subscribe-connect-follow-widget/
  * Description: A widget to display image links (icon buttons) to subscription services and social networking sites.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Srini G
  * Author URI: http://srinig.com/wordpress/
  * License: GPL2
  */
 
-
-add_action( 'widgets_init', 'scfw_load_widgets' );
-
-function scfw_load_widgets() {
-	register_widget( 'SCFW_Widget' );
-}
 
 class SCFW_Widget extends WP_Widget {
 	
@@ -361,21 +355,24 @@ class SCFW_Widget extends WP_Widget {
 	);
 
 	/**
-	 * Widget setup.
+	 * Constructor. Sets up the widget name, description, etc.
 	 */
-	function SCFW_Widget() {
-		/* Widget settings. */
-		$widget_ops = array( 'classname' => 'scfw', 'description' => __('Image links to subscription services and social networking sites.', 'scfw') );
-
-		/* Widget control settings. */
-		$control_ops = array( 'id_base' => 'scfw' );
-
-		/* Create the widget. */
-		$this->WP_Widget( 'scfw', __('Subscribe / Connect / Follow Widget', 'scfw'), $widget_ops, $control_ops );
+	function __construct() {
+		parent::__construct(
+			'scfw', // Base ID
+			__('Subscribe / Connect / Follow Widget', 'scfw'), // Name
+			array( 'classname' => 'scfw', 'description' => __('Image links to subscription services and social networking sites.', 'scfw'), ) // Args
+			);
 	}
-	
 
-		
+	/**
+	 * Register the widget. Should be hooked to 'widgets_init'.
+	 */
+	public static function register() {
+		register_widget( get_class() );
+	}
+
+
 
 	function widget( $args, $instance ) {
 		extract( $args );
@@ -578,6 +575,7 @@ class SCFW_Widget extends WP_Widget {
 	}
 
 }
+add_action( 'widgets_init', array('SCFW_Widget', 'register') );
 
 
 function scfw_head() 
